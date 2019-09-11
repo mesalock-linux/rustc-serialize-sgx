@@ -15,6 +15,7 @@
 pub use self::FromBase64Error::*;
 pub use self::CharacterSet::*;
 
+use std::prelude::v1::*;
 use std::fmt;
 use std::error;
 

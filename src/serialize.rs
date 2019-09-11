@@ -21,6 +21,7 @@
 Core encoding and decoding interfaces.
 */
 
+use std::prelude::v1::*;
 use std::cell::{Cell, RefCell};
 use std::ffi::OsString;
 use std::path;
