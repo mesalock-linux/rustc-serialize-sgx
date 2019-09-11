@@ -34,6 +34,7 @@
 //! extern crate rustc_serialize;
 //! ```
 
+#![allow(deprecated)] // For try
 #![cfg_attr(rustbuild, feature(staged_api, rustc_private))]
 #![cfg_attr(rustbuild, unstable(feature = "rustc_private", issue = "27812"))]
 
@@ -47,6 +48,14 @@
 #![cfg_attr(rust_build,
             unstable(feature = "rustc_private",
                      reason = "use the crates.io `rustc-serialize` library instead"))]
+
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
 
 #[cfg(test)] extern crate rand;
 
